@@ -1,0 +1,66 @@
+site_name: mm404.com/3dwiki
+site_description: Printing guides, tips, notes and howtos
+site_author: mm404
+repo_url: https://www.mm404.com/3d
+repo_name: mm503/3dwiki
+docs_dir: docs
+
+theme:
+  name: material
+  palette:
+    scheme: mm404
+    primary: custom
+    accent: custom
+  font:
+    text: false   # use system font stack set in CSS (matches mm404 site)
+    code: Fira Code
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.indexes
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+  icon:
+    logo: material/cube-outline
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mm404-bg.js
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  # - Printers:
+  #   - printers/index.md
+  - Klipper:
+    - klipper/index.md
+    - klipper/backup_n_restore.md
+    - klipper/flashing_mcu.md
+    - klipper/installing_klipper.md
+  # - Materials:
+  #   - materials/index.md
+  # - Slicers:
+  #   - slicers/index.md
+  - Guides:
+    - guides/index.md
+    # - guides/stealthmax_v2.md
+  # - Troubleshooting:
+  #   - troubleshooting/index.md

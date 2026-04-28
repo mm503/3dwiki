@@ -1,0 +1,378 @@
+/* ============================================================
+   mm404.com/3d design system for MkDocs Material
+   ============================================================ */
+
+:root,
+[data-md-color-scheme="mm404"] {
+  --bg:      #0a0a0f;
+  --surface: #111118;
+  --accent:  #ff6b35;
+  --accent2: #ff9d6c;
+  --text:    #e8e8f0;
+  --muted:   #6b6b80;
+  --grid:    rgba(255, 107, 53, 0.06);
+
+  --md-default-bg-color:            #0a0a0f;
+  --md-default-bg-color--light:     #111118;
+  --md-default-bg-color--lighter:   #1a1a24;
+  --md-default-bg-color--lightest:  #222230;
+
+  --md-default-fg-color:            #e8e8f0;
+  --md-default-fg-color--light:     #a0a0b8;
+  --md-default-fg-color--lighter:   #6b6b80;
+  --md-default-fg-color--lightest:  #3a3a50;
+
+  --md-primary-fg-color:            #ff6b35;
+  --md-primary-fg-color--light:     #ff9d6c;
+  --md-primary-bg-color:            #0a0a0f;
+  --md-primary-bg-color--light:     rgba(255, 107, 53, 0.12);
+
+  --md-accent-fg-color:             #ff6b35;
+  --md-accent-fg-color--transparent:rgba(255, 107, 53, 0.1);
+
+  --md-typeset-color:               #e8e8f0;
+  --md-typeset-a-color:             #ff9d6c;
+
+  --md-code-bg-color:               #111118;
+  --md-code-fg-color:               #e8e8f0;
+  --md-code-hl-color:               rgba(255, 107, 53, 0.15);
+  --md-code-hl-keyword-color:       #ff6b35;
+  --md-code-hl-string-color:        #9ecf9e;
+  --md-code-hl-number-color:        #ff9d6c;
+  --md-code-hl-function-color:      #ff9d6c;
+  --md-code-hl-special-color:       #ff6b35;
+  --md-code-hl-constant-color:      #ff6b35;
+  --md-code-hl-operator-color:      #a0a0b8;
+  --md-code-hl-punctuation-color:   #6b6b80;
+  --md-code-hl-comment-color:       #6b6b80;
+  --md-code-hl-name-color:          #e8e8f0;
+  --md-code-hl-variable-color:      #e8e8f0;
+  --md-code-hl-generic-color:       #a0a0b8;
+
+  --md-admonition-bg-color:         #111118;
+
+  --md-footer-bg-color:             #060609;
+  --md-footer-bg-color--dark:       #030305;
+  --md-footer-fg-color:             #a0a0b8;
+  --md-footer-fg-color--light:      #6b6b80;
+  --md-footer-fg-color--lighter:    #3a3a50;
+}
+
+/* ── Global ─────────────────────────────────────────────── */
+
+html {
+  font-size: 112.5%; /* 15px effective base instead of 16px */
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: #0a0a0f;
+}
+
+/* ── Background: perspective grid (injected via JS) ─────── */
+
+.mm404-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transform: perspective(600px) rotateX(35deg) scaleY(1.8) translateY(10%);
+  transform-origin: center bottom;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* fade grid top + bottom */
+.mm404-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #0a0a0f 0%, transparent 45%, #0a0a0f 100%);
+}
+
+/* ── Glow orbs (injected via JS) ────────────────────────── */
+
+.mm404-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mm404-orb--1 {
+  width: 500px;
+  height: 500px;
+  top: -120px;
+  left: -120px;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.2) 0%, transparent 70%);
+}
+
+.mm404-orb--2 {
+  width: 400px;
+  height: 400px;
+  bottom: -100px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.12) 0%, transparent 70%);
+}
+
+/* ── Everything above the background ────────────────────── */
+
+.md-header,
+.md-tabs,
+.md-main,
+.md-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+
+.md-header {
+  background-color: rgba(6, 6, 9, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 107, 53, 0.15);
+  box-shadow: none;
+}
+
+.md-header__topic:first-child .md-ellipsis {
+  font-weight: 700;
+  color: #ff9d6c;
+}
+
+.md-search__form {
+  background-color: rgba(17, 17, 24, 0.9);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  border-radius: 8px;
+}
+
+.md-search__input { color: #e8e8f0; }
+.md-search__input::placeholder { color: #6b6b80; }
+
+/* ── Tabs ────────────────────────────────────────────────── */
+
+.md-tabs {
+  background-color: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+/* Base: unvisited, visited, all states */
+.md-tabs__link,
+.md-tabs__link:link,
+.md-tabs__link:visited {
+  color: #a0a0b8 !important;
+  opacity: 1 !important;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.md-tabs__link:hover {
+  color: #ff9d6c !important;
+  opacity: 1 !important;
+}
+
+/* Active tab — persistent, no hover needed */
+.md-tabs__item--active .md-tabs__link,
+.md-tabs__item--active .md-tabs__link:link,
+.md-tabs__item--active .md-tabs__link:visited,
+.md-tabs__item--active .md-tabs__link:hover {
+  color: #ff9d6c !important;
+  opacity: 1 !important;
+  border-bottom: 2px solid #ff6b35;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+
+.md-sidebar {
+  background-color: transparent;
+}
+
+/* Root nav title (site name + logo row) — compact, muted */
+.md-nav[data-md-level="0"] > .md-nav__title {
+  color: #6b6b80;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.6rem 0.8rem;
+}
+
+/* Hide the duplicate section-name back-label that appears above the real section title
+   when navigation.tabs lifts the active section into the sidebar root */
+.md-nav--primary.md-nav--lifted > .md-nav__list > .md-nav__item--active
+  > .md-nav__link {
+  display: none;
+}
+
+/* Section title in sidebar (e.g. "Klipper") — prominent heading */
+.md-nav[data-md-level="1"] > .md-nav__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  background: linear-gradient(135deg, #ffffff 30%, #ff9d6c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #ff9d6c;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+  padding: 1.1rem 0.8rem 0.85rem;
+  display: block;
+  cursor: default;
+}
+
+/* Hide the back-arrow icon inside the section title */
+.md-nav[data-md-level="1"] > .md-nav__title .md-nav__icon {
+  display: none;
+}
+
+.md-nav__item .md-nav__link      { color: #a0a0b8; font-size: 0.85rem; }
+.md-nav__item .md-nav__link:hover { color: #ff9d6c; }
+.md-nav__item--active > .md-nav__link { color: #ff6b35; font-weight: 600; }
+
+/* ── Layout width ────────────────────────────────────────── */
+
+.md-grid {
+  max-width: 1440px;
+}
+
+/* ── Content card ────────────────────────────────────────── */
+
+.md-content {
+  background: transparent;
+}
+
+.md-content__inner {
+  background: rgba(11, 11, 18, 0.75);
+  border: 1px solid rgba(255, 107, 53, 0.14);
+  border-radius: 14px;
+  padding: 2rem 2.5rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Headings ────────────────────────────────────────────── */
+
+.md-typeset h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  /* gradient: white → accent2, matching landing page */
+  background: linear-gradient(135deg, #ffffff 30%, #ff9d6c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* fallback for browsers that don't support gradient text */
+  color: #ff9d6c;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.15);
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  display: block;
+}
+
+.md-typeset h2 {
+  color: #e8e8f0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+  padding-bottom: 0.25em;
+}
+
+.md-typeset h3, .md-typeset h4 { color: #d0d0dc; }
+
+.md-typeset a { color: #ff9d6c; text-decoration: none; transition: color 0.2s; }
+.md-typeset a:hover { color: #ff6b35; text-decoration: underline; }
+
+/* ── Code ────────────────────────────────────────────────── */
+
+.md-typeset code {
+  background-color: #111118;
+  color: #ff9d6c;
+  border: 1px solid rgba(255, 107, 53, 0.18);
+  border-radius: 5px;
+  padding: 0.1em 0.45em;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.88em;
+}
+
+.md-typeset pre {
+  background-color: #111118;
+  border: 1px solid rgba(255, 107, 53, 0.15);
+  border-radius: 10px;
+}
+
+.md-typeset pre > code {
+  color: #e8e8f0;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ── Tables ──────────────────────────────────────────────── */
+
+.md-typeset table:not([class]) {
+  border: 1px solid rgba(255, 107, 53, 0.18);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: rgba(255, 107, 53, 0.1);
+  color: #ff9d6c;
+  border-color: rgba(255, 107, 53, 0.15);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.md-typeset table:not([class]) td {
+  border-color: rgba(255, 107, 53, 0.08);
+  color: #e8e8f0;
+}
+
+.md-typeset table:not([class]) tr:hover td {
+  background-color: rgba(255, 107, 53, 0.04);
+}
+
+/* ── Admonitions ─────────────────────────────────────────── */
+
+.md-typeset .admonition,
+.md-typeset details {
+  background-color: rgba(17, 17, 24, 0.9);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  border-left: 4px solid #ff6b35;
+  border-radius: 0 10px 10px 0;
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  background-color: rgba(255, 107, 53, 0.1);
+  color: #ff9d6c;
+  font-weight: 600;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+
+.md-footer {
+  background-color: rgba(6, 6, 9, 0.9);
+  border-top: 1px solid rgba(255, 107, 53, 0.1);
+}
+.md-footer-meta { background-color: #030305; }
+.md-footer__link { color: #a0a0b8; transition: color 0.2s; }
+.md-footer__link:hover { color: #ff9d6c; }
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: #0a0a0f; }
+::-webkit-scrollbar-thumb  { background: #2a2a38; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #ff6b35; }
