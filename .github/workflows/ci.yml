@@ -34,4 +34,4 @@ jobs:
 
     - name: Deploy pages to branch rendered
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      run: mkdocs gh-deploy --clean --force remote-name origin --remote-branch rendered
+      run: mkdocs gh-deploy --clean --force
