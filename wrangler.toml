@@ -2,6 +2,7 @@ name = "3d"
 account_id = "90392cc53f9f79504d1a914022d95f1c"
 compatibility_date = "2026-09-01"
 workers_dev = false
+main = "./src/index.js"
 
 routes = [
   { pattern = "mm404.com/3d/*", zone_name = "mm404.com" },
@@ -12,5 +13,7 @@ routes = [
 
 [assets]
 directory = "./public"
+binding = "ASSETS"
 not_found_handling = "404-page"
 html_handling = "auto-trailing-slash"
+run_worker_first = ["/3d/assets/m.js"]
