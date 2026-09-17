@@ -31,9 +31,10 @@ jobs:
     - name: Install mkdocs dependencies
       run: pip install -r requirements.txt
 
-    - name: Test wiki build - render pages
-      run: mkdocs build --verbose --strict --clean
+    - name: Wiki build - render pages
+      run: mkdocs build --verbose --strict --clean -d public/3d
 
     - name: Deploy pages to branch rendered
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      run: mkdocs gh-deploy --clean --force
+    - uses: cloudflare/wrangler-action@v4
+      with:
+        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

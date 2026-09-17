@@ -24,6 +24,7 @@ theme:
     - content.code.copy
   icon:
     logo: material/cube-outline
+  custom_dir: overrides
 
 extra_css:
   - stylesheets/extra.css

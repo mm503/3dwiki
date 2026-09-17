@@ -1,0 +1,16 @@
+name = "3d"
+account_id = "90392cc53f9f79504d1a914022d95f1c"
+compatibility_date = "2026-09-01"
+workers_dev = false
+
+routes = [
+  { pattern = "mm404.com/3d/*", zone_name = "mm404.com" },
+  { pattern = "mm404.com/3d",   zone_name = "mm404.com" },
+  { pattern = "www.mm404.com/3d/*", zone_name = "mm404.com" },
+  { pattern = "www.mm404.com/3d",   zone_name = "mm404.com" }
+]
+
+[assets]
+directory = "./public"
+not_found_handling = "404-page"
+html_handling = "auto-trailing-slash"
